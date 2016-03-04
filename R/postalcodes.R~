@@ -1,0 +1,31 @@
+##' Clean postal codes
+##'
+##' @param codes vector that is coercible to a character vector of
+##' postal codes
+##' @param blank should there be a blank space between the two parts
+##' of the code?
+##' @param missingValues optional character vector of missing value
+##' tokens
+##' @export
+##' @examples
+##' cds <- c("A1B 2C3", "missing",
+##'          "---  A    5G*****HHH5J4",
+##'          "E9J6H2nnnn", "e6n8l0")
+##' cleanPostalCodes(cds, TRUE)
+##' cleanPostalCodes(cds, FALSE)
+##' cleanPostalCodes(cds, TRUE, "missing")
+##' cleanPostalCodes(cds, FALSE, "missing")
+cleanPostalCodes <- function(codes,
+                             blank = TRUE,
+                             missingValues = character()) {
+    repl <- ifelse(blank, '\\1 \\3', '\\1\\3')
+    codes <- as.character(codes)
+    missings <- codes %in% missingValues
+    codes[missings] <- NA
+    codes[!missings] <-
+        codes[!missings] %>%
+        toupper() %>%
+        sub(pattern     = '([A-Z][0-9][A-Z])(.*)([0-9][A-Z][0-9])',
+            replacement = '\\1 \\3')
+    return(codes)
+}
