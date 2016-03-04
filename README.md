@@ -1,5 +1,4 @@
-# cleanPostalCodes
-Clean postal codes
+# Clean postal codes
 
 ```{r}
 cds <- c("A1B 2C3", "missing",
