@@ -22,7 +22,5 @@ cds <- c("A1B 2C3", "missing",
          "E9J6H2nnnn", "e6n8l0")
 cleanPostalCodes(cds, TRUE)
 cleanPostalCodes(cds, FALSE)
-cleanPostalCodes(cds, TRUE, "missing")
-cleanPostalCodes(cds, FALSE, "missing")
 }
 
