@@ -8,4 +8,8 @@ cleanPostalCodes(cds)
 [1] "A1B 2C3" NA        NA        "E9J 6H2" "E6N 8L0"
 ```
 
-Acknowledgements: [Ben](https://github.com/benrifkind) for regex help.
+Acknowledgements: [Ben](https://github.com/benrifkind) for help with regular expressions:
+
+```{r}
+'^(.*?)([A-Z][0-9][A-Z])(.*?)([0-9][A-Z][0-9])(.*?)$'
+```
