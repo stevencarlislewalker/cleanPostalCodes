@@ -15,12 +15,14 @@ cleanPostalCodes <- function(codes,
                              blank = TRUE) {
     pat <- '^(.*?)([A-Z][0-9][A-Z])(.*?)([0-9][A-Z][0-9])(.*?)$'
     repl <- ifelse(blank, '\\2 \\4', '\\2\\4')
-    codes <- as.character(codes)
     codes <-
         codes %>%
+        as.character() %>%
         toupper() %>%
-        sub(pattern     = pat,
-            replacement = repl)
+        gsub(pattern     = '[^0-9A-Z]',
+             replacement = '') %>%
+        sub( pattern     = pat,
+             replacement = repl)
     codes[!grepl(pat, codes)] <- NA
     return(codes)
 }
